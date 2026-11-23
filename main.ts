@@ -11,7 +11,7 @@ if (!existsSync(src)) {
   throw new Error("POST.json missing from repository root");
 }
 const parsed = JSON.parse(readFileSync(src, "utf8")) as { url?: unknown };
-if (typeof parsed.url !== "string" || !/^https:\/\/(x\.com|twitter\.com)\/.+\/status\/\d+/.test(parsed.url)) {
+if (typeof parsed.url !== "string" || !/^https:\/\/(www\.|mobile\.)?(x\.com|twitter\.com)\/.+\/status\/\d+/.test(parsed.url)) {
   throw new Error(`POST.json url is not an X post address: ${String(parsed.url)}`);
 }
 // Count code points of the URL so a non-ASCII handle cannot slip past the gate.
